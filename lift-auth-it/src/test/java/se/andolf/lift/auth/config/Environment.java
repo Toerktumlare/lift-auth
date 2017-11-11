@@ -5,7 +5,7 @@ package se.andolf.lift.auth.config;
  */
 public enum Environment {
     LOCAL("localhost", 9191),
-    CI("", 8080);
+    CI("localhost", 9191);
 
     private final int port;
     private final String host;

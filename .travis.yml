@@ -36,6 +36,7 @@ jobs:
         - docker run --name myMongo -d -p 127.0.0.1:27017:27017 mongo:latest
         - nohup java -jar lift-auth-app/target/lift-auth-app-0.0.1-SNAPSHOT.jar &
         - python3 health.py http://localhost:9191/uaa/health
+        - sh ci-test.sh
 #    - stage: health check staging
 #      script: python3 health.py http://lift-service-staging.herokuapp.com/health
 #    - stage: test staging
