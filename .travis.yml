@@ -1,0 +1,45 @@
+dist: trusty
+sudo: required
+
+env:
+  global:
+    secure: "vOS/QBqYR34DDB7LHpNj3OGibTJCqgMIpFOD6vBDrn2PBL9syqQEBGj+ot7V/tWkwWS+FuCIkLCL3Qy4B7l40BL6PR9ULTMxIFghqOD3QBbIbaC0xMbXBe6D7+7FkDihdIQgRNYq7MjvCgwwAa3lkpeTX8N1dcXwhDUfmJGJzVIerwZwm2aNJuXnfgsRP1eo5QZNEEtmQOXY8PBIHdJGcy7+Ui/Yb6KvFKMXiEmT0VkCq6Taq2+Qk3xvYfqzUUboHe47Lv+ZaeMrjSHMwwUDZ0/lBOHmgiIZpfPhJiRGGViCh/8S9kpiFfESpHegSII8XKh3QA6XjXyJx2AioNu784xm+O0xZM3LLma4l+Et+UoTVLnvfKPvJD+SkTc8ezb4TikCRp3XsJCPaJzYnRUK/aTBlwEQcZsPqe5zcpeGIXuw5R8pwcUG9FJggMiVKMsofHjJ4TTv0aYwsFaZKpnwqUQtAM0dflb3AZ2KxIga3MAZy4sqMr7DZEs773PV4JMMkpkTOAjtHFu8MmXBu3bH1KkdgJZ0Qx49naIsmhoNvpUEWJG97SN8WSflNNfCxn/0IXwnPtGvjQ6mi9WZLosrqV+D1WAVTK1+N6aYeAxP2XVnOLniGSiPGCfCSNi3HA+T67DFKF8Ta/ArNVKPk2sLL0jvNIwLrg1KIuEszOXcBwg="
+
+language: java
+jdk:
+- oraclejdk8
+
+cache:
+  directories:
+  - $HOME/.m2
+
+addons:
+  sonarqube:
+    token:
+      secure: $SONARQUBE_AUTH_TOKEN
+
+jobs:
+  include:
+#    - stage: install python
+#      script:
+#        - sudo apt-get -y install python3-pip
+#        - python3 -V
+#        - pip3 -V
+#        - pip3 install requests
+    - stage: compile
+      script: ./mvnw clean verify coveralls:report -P integration-tests,coveralls
+    - stage: compile
+      script: ./mvnw clean verify org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -P integration-tests
+    - stage: compile
+      script: ./mvnw clean package
+#    - stage: health check staging
+#      script: python3 health.py http://lift-service-staging.herokuapp.com/health
+#    - stage: test staging
+#      script: ./test-ci.sh
+#    - stage: deploy to production
+#      script: skip
+#      deploy:
+#        <<: *heroku
+#        app: lift-service-production
+#    - stage: health check production
+#      script: python3 health.py http://lift-service-production.herokuapp.com/health
