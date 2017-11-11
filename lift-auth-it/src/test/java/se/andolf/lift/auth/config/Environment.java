@@ -34,6 +34,6 @@ public enum Environment {
         if (environment == null) {
             return LOCAL;
         }
-        return Environment.valueOf(environment.toUpperCase());
+        return CI;
     }
 }

@@ -18,9 +18,12 @@ public class CustomUserAuthenticationConverter extends DefaultUserAuthentication
     @Override
     public Map<String, ?> convertUserAuthentication(Authentication authentication) {
         Map<String, Object> response = new LinkedHashMap<>();
-        final UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+        final Object principal = authentication.getPrincipal();
+        if(principal instanceof UserPrincipal) {
+            final UserPrincipal userPrincipal = (UserPrincipal) principal;
+            response.put(SUBJECT, userPrincipal.getUserEntity().getId());
+        }
         response.put(USERNAME, authentication.getName());
-        response.put(SUBJECT, userPrincipal.getUserEntity().getId());
         if (authentication.getAuthorities() != null && !authentication.getAuthorities().isEmpty()) {
             response.put(AUTHORITIES, AuthorityUtils.authorityListToSet(authentication.getAuthorities()));
         }
