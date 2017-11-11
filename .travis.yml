@@ -27,9 +27,7 @@ jobs:
 #        - pip3 -V
 #        - pip3 install requests
     - stage: compile
-      script: ./mvnw clean verify coveralls:report -P integration-tests,coveralls
-    - stage: compile
-      script: ./mvnw clean verify org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -P integration-tests
+      script: ./mvnw clean verify org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
     - stage: compile
       script: ./mvnw clean package
 #    - stage: health check staging
