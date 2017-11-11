@@ -15,6 +15,7 @@ cache:
 
 addons:
   sonarqube:
+    organization: $SONARQUBE_ORGANIZATION
     token:
       secure: $SONARQUBE_AUTH_TOKEN
 
