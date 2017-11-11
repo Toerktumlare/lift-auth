@@ -19,6 +19,9 @@ addons:
     token:
       secure: $SONARQUBE_AUTH_TOKEN
 
+services:
+  - docker
+
 jobs:
   include:
 #    - stage: install python
@@ -31,6 +34,14 @@ jobs:
       script: ./mvnw clean package sonar:sonar
     - stage: compile
       script: ./mvnw clean package
+      script:
+        - sudo apt-get -y install python3-pip
+        - python3 -V
+        - pip3 -V
+        - pip3 install requests
+      script: docker run --name myMongo -d -p 127.0.0.1:27017:27017 mongo:latest
+      script: java -jar lift-auth-app/target/lift-auth-app-0.0.1-SNAPSHOT.jar
+      script: python3 health.py http://localhost:9191/uaa/health
 #    - stage: health check staging
 #      script: python3 health.py http://lift-service-staging.herokuapp.com/health
 #    - stage: test staging
