@@ -1,0 +1,48 @@
+{
+  "User": [
+    {
+      "_id" : { "$oid" : "59e24b59ca989685da26e4e1" },
+      "meta":{
+        "created": { "$date" : "2011-08-01T18:29:49.793Z" },
+        "lastModified": { "$date" : "2011-08-01T18:29:49.793Z" },
+        "location":"http://localhost:8080/Users/59e24b59ca989685da26e4e1"
+      },
+      "userName": "john.doe@gmail.com",
+      "name": {
+        "formatted": "John Doe",
+        "givenName": "John",
+        "familyName": "Doe"
+      },
+      "active": true,
+      "password": "$2a$11$SXrRj.HMqQEE94Z4u1/YLubZefHzNKB4CuhhCKhnTMohomLOuDhxq",
+      "phoneNumbers":[
+        {
+          "type":"MOBILE",
+          "value":"0046701234567"
+        }
+      ],
+      "emails":[
+        {
+          "type": "PRIVATE",
+          "value":"john.doe@gmail.com",
+          "primary": true
+        }
+      ],
+      "addresses": [
+        {
+          "type": "HOME",
+          "streetAddress": "Torsgatan 1",
+          "locality": "Stockholm",
+          "postalCode": "11400",
+          "country": "Sweden",
+          "primary": true
+        }
+      ],
+      "roles": [
+        {
+          "value": "ADMIN"
+        }
+      ]
+    }
+  ]
+}
