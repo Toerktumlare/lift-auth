@@ -38,7 +38,7 @@ jobs:
         - python3 health.py http://localhost:9191/uaa/health
         - sh ci-test.sh
     - stage: deploy to production
-      script: ./mvnw clean package -Pprod
+      script: ./mvnw clean package
       deploy: &heroku
         provider: heroku
         app: lift-auth-service
