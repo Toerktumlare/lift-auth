@@ -43,5 +43,3 @@ jobs:
         provider: heroku
         app: lift-auth-service
         api_key: $HEROKU_AUTH_TOKEN
-#    - stage: health check production
-#      script: python3 health.py http://lift-service-production.herokuapp.com/health
