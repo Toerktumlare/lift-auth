@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -Dserver.port=$PORT -jar lift-auth-app/target/lift-app*.jar --environment=prod --dbToken=$DB_PASSWORD --keyCredentials=$KEY_CREDENTIALS
+web: java $JAVA_OPTS -Dserver.port=$PORT -jar lift-auth-app/target/lift-auth-app-*.jar --environment=prod --dbToken=$DB_PASSWORD --keyCredentials=$KEY_CREDENTIALS
