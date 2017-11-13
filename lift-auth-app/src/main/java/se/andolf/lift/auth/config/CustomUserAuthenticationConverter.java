@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class CustomUserAuthenticationConverter extends DefaultUserAuthenticationConverter {
 
-    private static final String SUBJECT = "subject";
+    private static final String SUBJECT = "sub";
 
     @Override
     public Map<String, ?> convertUserAuthentication(Authentication authentication) {
