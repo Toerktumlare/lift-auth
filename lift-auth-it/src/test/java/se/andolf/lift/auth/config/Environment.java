@@ -14,7 +14,7 @@ public enum Environment {
     Environment(String host, int port) {
         this.port = port;
         this.host = host;
-        this.baseURI = "http://" + host + "/uaa";
+        this.baseURI = "http://" + host;
     }
 
     public int port() {
