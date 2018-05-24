@@ -57,7 +57,6 @@ public class AuthServiceConfiguration extends AuthorizationServerConfigurerAdapt
         return new AccountUserDetailsService();
     }
 
-    @Bean
     public PasswordEncoder encoder() {
         return new BCryptPasswordEncoder(11);
     }
