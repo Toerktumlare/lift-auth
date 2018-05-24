@@ -36,7 +36,7 @@ public class TokenIT {
     public MongoDbRule remoteMongoDbRule = new MongoDbRule(mongoDb().databaseName("lift").host(Environment.current().host()).build());
 
     @Test
-    public void shouldGet401IfBadClientCredentials() {
+    public void shouldGet403IfBadClientCredentials() {
         given()
                 .auth()
                 .preemptive()
@@ -44,7 +44,7 @@ public class TokenIT {
         .accept(ContentType.JSON)
         .post(TOKEN_RESOURCE)
         .then()
-        .statusCode(401);
+        .statusCode(403);
     }
 
     @Test

@@ -35,7 +35,7 @@ jobs:
         - pip3 install requests
         - docker run --name myMongo -d -p 127.0.0.1:27017:27017 mongo:latest
         - nohup java -jar lift-auth-app/target/lift-auth-app-0.0.1-SNAPSHOT.jar &
-        - python3 health.py http://localhost:9191/uaa/health
+        - python3 health.py http://localhost:9191/admin/health
         - sh ci-test.sh
     - stage: deploy to production
       script: ./mvnw clean package

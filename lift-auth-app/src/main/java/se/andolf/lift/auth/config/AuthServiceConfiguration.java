@@ -53,6 +53,10 @@ public class AuthServiceConfiguration extends AuthorizationServerConfigurerAdapt
     }
 
     @Bean
+    public AccountUserDetailsService accountUserDetailsService() {
+        return new AccountUserDetailsService();
+    }
+
     public PasswordEncoder encoder() {
         return new BCryptPasswordEncoder(11);
     }
@@ -91,7 +95,7 @@ public class AuthServiceConfiguration extends AuthorizationServerConfigurerAdapt
     }
 
     @Override
-    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+    public void configure(AuthorizationServerSecurityConfigurer security) {
         security.checkTokenAccess("permitAll()");
         security.tokenKeyAccess("isAuthenticated()");
     }
@@ -99,15 +103,15 @@ public class AuthServiceConfiguration extends AuthorizationServerConfigurerAdapt
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("ios").autoApprove()
-                .secret("secret")
+                .withClient("ios")
+                .autoApprove(true)
+                .secret("{noop}secret")
                 .authorizedGrantTypes("refresh_token", "password")
                 .scopes("user");
     }
 
     @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         endpoints.tokenStore(tokenStore())
                 .accessTokenConverter(accessTokenConverter())
                 .authenticationManager(authenticationManager);
